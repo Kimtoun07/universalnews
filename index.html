@@ -1,0 +1,1020 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>Universal News - Real National and International News</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+    }
+    /* Scrollbar for comments */
+    .comments-scroll {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    /* Clamp for summary text */
+    .line-clamp-3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;  
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 min-h-screen flex flex-col">
+  <div id="app" class="flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="border-b border-gray-300 bg-white sticky top-0 z-30 shadow-sm">
+      <div
+        class="container mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between"
+      >
+        <div class="flex items-center space-x-3">
+          <div class="relative w-14 h-14">
+            <img
+              alt="Blue and green Earth globe icon with continents visible, stylized modern vector"
+              class="w-14 h-14 rounded-full border-2 border-yellow-600 shadow-md"
+              height="56"
+              src="https://placehold.co/80x80/png?text=🌍&font=roboto&font-weight=700&font-size=48&bg=3B82F6&fg=10B981"
+              width="56"
+            />
+            <span class="absolute bottom-0 right-0 bg-yellow-600 text-white text-xs font-bold rounded-full px-1.5 py-0.5 select-none drop-shadow-md" style="transform: translate(25%, 25%)">Universal News</span>
+          </div>
+        </div>
+        <nav class="mt-4 sm:mt-0">
+          <ul
+            class="flex space-x-6 text-yellow-800 font-semibold text-sm cursor-pointer select-none"
+          >
+            <li>
+              <a
+                class="hover:text-yellow-900 transition-colors duration-200"
+                href="#"
+                @click.prevent="goToSection('home')"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                class="hover:text-yellow-900 transition-colors duration-200"
+                href="#"
+                @click.prevent="goToSection('national')"
+                >National</a
+              >
+            </li>
+            <li>
+              <a
+                class="hover:text-yellow-900 transition-colors duration-200"
+                href="#"
+                @click.prevent="goToSection('international')"
+                >International</a
+              >
+            </li>
+            <li>
+              <a
+                class="hover:text-yellow-900 transition-colors duration-200"
+                href="#"
+                @click.prevent="goToSection('contact')"
+                >Contact</a
+              >
+            </li>
+            <li>
+              <a
+                class="hover:text-yellow-900 transition-colors duration-200"
+                href="#"
+                @click.prevent="goToSection('socials')"
+                >Socials</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+      <!-- Hero Section -->
+      <section
+        v-if="currentView === 'home'"
+        class="bg-gradient-to-r from-yellow-100 via-yellow-50 to-yellow-100 py-16"
+        id="hero"
+      >
+        <div
+          class="container mx-auto px-4 flex flex-col md:flex-row items-center md:space-x-12"
+        >
+          <div class="md:w-1/2 mb-10 md:mb-0">
+            <h2
+              class="text-5xl font-extrabold text-yellow-900 mb-6 leading-tight drop-shadow-md"
+            >
+              Real News, Real Stories
+            </h2>
+            <p class="text-yellow-800 text-lg mb-8 max-w-xl leading-relaxed">
+              Stay informed with <span class="font-semibold">Universal News</span> — your trusted source for national and international news that truly matters. Dive into stories that shape your world.
+            </p>
+            <button
+              @click="goToSection('national')"
+              class="inline-block bg-yellow-600 text-white px-8 py-4 rounded-lg font-semibold shadow-lg hover:bg-yellow-700 transition"
+              aria-label="Explore Latest News"
+            >
+              Explore Latest News
+            </button>
+          </div>
+          <div class="md:w-1/2">
+            <img
+              alt="Newsroom with journalists working on computers and microphones, modern office environment"
+              class="rounded-xl shadow-2xl w-full max-w-lg mx-auto"
+              height="400"
+              src="https://storage.googleapis.com/a1aa/image/6ebdfed5-c376-4c10-0443-cd6fdaf95c3a.jpg"
+              width="600"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact and Socials in line with Home -->
+      <section v-if="currentView === 'home'" class="bg-yellow-50 py-16">
+        <div class="container mx-auto px-4 max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-16">
+          <!-- Contact Section -->
+          <section id="contact" aria-label="Contact Us" class="bg-white rounded-xl shadow-lg p-10 border border-yellow-300 flex flex-col">
+            <h3
+              class="text-4xl font-extrabold text-yellow-900 mb-10 border-b border-yellow-300 pb-3"
+            >
+              Contact Us
+            </h3>
+            <div
+              class="max-w-full"
+            >
+              <form
+                action="mailto:hiemkimtoun@gmail.com"
+                class="space-y-8"
+                enctype="text/plain"
+                method="POST"
+              >
+                <div>
+                  <label
+                    class="block text-yellow-900 font-semibold mb-3 text-lg"
+                    for="name-contact-home"
+                    >Name</label
+                  >
+                  <input
+                    class="w-full border border-yellow-300 rounded-lg px-5 py-3 focus:outline-none focus:ring-4 focus:ring-yellow-400 transition"
+                    id="name-contact-home"
+                    name="name"
+                    placeholder="Your full name"
+                    required
+                    type="text"
+                    aria-required="true"
+                  />
+                </div>
+                <div>
+                  <label
+                    class="block text-yellow-900 font-semibold mb-3 text-lg"
+                    for="email-contact-home"
+                    >Email</label
+                  >
+                  <input
+                    class="w-full border border-yellow-300 rounded-lg px-5 py-3 focus:outline-none focus:ring-4 focus:ring-yellow-400 transition"
+                    id="email-contact-home"
+                    name="email"
+                    placeholder="you@example.com"
+                    required
+                    type="email"
+                    aria-required="true"
+                  />
+                </div>
+                <div>
+                  <label
+                    class="block text-yellow-900 font-semibold mb-3 text-lg"
+                    for="message-contact-home"
+                    >Message</label
+                  >
+                  <textarea
+                    class="w-full border border-yellow-300 rounded-lg px-5 py-3 focus:outline-none focus:ring-4 focus:ring-yellow-400 transition resize-none"
+                    id="message-contact-home"
+                    name="message"
+                    placeholder="Write your message here"
+                    required
+                    rows="6"
+                    aria-required="true"
+                  ></textarea>
+                </div>
+                <button
+                  class="bg-yellow-600 text-white px-8 py-4 rounded-lg font-semibold shadow-md hover:bg-yellow-700 transition w-full sm:w-auto"
+                  type="submit"
+                  aria-label="Send Message"
+                >
+                  Send Message
+                </button>
+              </form>
+              <div class="mt-12 text-yellow-900 space-y-4 text-lg font-medium">
+                <p>
+                  <i class="fas fa-envelope mr-3"></i>
+                  <a class="hover:underline" href="mailto:hiemkimtoun@gmail.com"
+                    >hiemkimtoun@gmail.com</a
+                  >
+                </p>
+                <p>
+                  <i class="fas fa-phone mr-3"></i>
+                  <a class="hover:underline" href="tel:+0977008435">0977008435</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Tips Section under Contact -->
+            <div class="max-w-full bg-yellow-50 border border-yellow-300 rounded-lg p-8 shadow-inner mt-16">
+              <h4 class="text-3xl font-bold text-yellow-900 mb-8 border-b border-yellow-300 pb-3">
+                Tips for Contacting Us
+              </h4>
+              <ul class="list-disc list-inside space-y-4 text-yellow-800 text-lg leading-relaxed">
+                <li>Provide a clear and concise subject in your message.</li>
+                <li>Include your contact information for a prompt response.</li>
+                <li>Be polite and respectful in your communication.</li>
+                <li>Check your email spam folder if you do not receive a reply.</li>
+                <li>For urgent matters, please call us directly at <strong>0977008435</strong>.</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- Socials Section -->
+          <section id="socials" aria-label="Follow Us" class="text-center bg-white rounded-xl shadow-lg p-10 border border-yellow-300 flex flex-col justify-center">
+            <h3
+              class="text-4xl font-extrabold text-yellow-900 mb-10 border-b border-yellow-300 pb-3"
+            >
+              Follow Us
+            </h3>
+            <p class="text-yellow-800 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
+              Stay connected with Universal News through our social media channels. Get the latest updates, behind-the-scenes content, and engage with our community.
+            </p>
+            <div class="flex justify-center space-x-16 text-yellow-700 text-5xl">
+              <a
+                aria-label="Facebook"
+                class="hover:text-yellow-900 transition-colors duration-300"
+                href="https://www.facebook.com/share/1NknRcaHju/"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <i class="fab fa-facebook-square"></i>
+              </a>
+              <a
+                aria-label="YouTube"
+                class="hover:text-yellow-900 transition-colors duration-300"
+                href="https://youtube.com/@coolworldslab-ex1re?si=GpE5mUFvYxPwrGBt"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <!-- National News Section with Contact and Socials inline -->
+      <section
+        v-if="currentView === 'national'"
+        class="container mx-auto px-4 py-16 max-w-7xl"
+        id="national"
+      >
+        <h3
+          class="text-4xl font-extrabold text-yellow-900 mb-12 border-b border-yellow-300 pb-3"
+        >
+          National News
+        </h3>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+          <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-10">
+            <article
+              v-for="(news, index) in newsList"
+              :key="news.id"
+              class="border border-yellow-300 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition cursor-pointer bg-white flex flex-col"
+              @click="openNews(news.id)"
+              tabindex="0"
+              @keydown.enter="openNews(news.id)"
+              role="button"
+              :aria-label="'Read full news: ' + news.title"
+            >
+              <img
+                :alt="news.imageAlt"
+                class="w-full h-56 object-cover rounded-t-2xl"
+                height="250"
+                :src="news.imageSrc"
+                width="400"
+                loading="lazy"
+              />
+              <div class="p-6 flex flex-col flex-grow">
+                <h4 class="font-semibold text-xl text-yellow-900 mb-3 leading-snug">
+                  {{ news.title }}
+                </h4>
+                <p class="text-yellow-800 text-base mb-6 line-clamp-3 flex-grow">
+                  {{ news.summary }}
+                </p>
+                <button
+                  @click.stop="openNews(news.id)"
+                  class="text-yellow-700 font-semibold hover:underline text-sm self-start"
+                  aria-label="Read more about {{ news.title }}"
+                >
+                  Read more
+                </button>
+              </div>
+            </article>
+          </div>
+          <aside class="space-y-16">
+            <!-- Contact Section -->
+            <section id="contact" aria-label="Contact Us" class="bg-white rounded-xl shadow-lg p-8 border border-yellow-300">
+              <h4
+                class="text-3xl font-extrabold text-yellow-900 mb-6 border-b border-yellow-300 pb-2"
+              >
+                Contact Us
+              </h4>
+              <div class="text-yellow-900 space-y-4 text-base font-medium">
+                <p>
+                  <i class="fas fa-envelope mr-3"></i>
+                  <a class="hover:underline" href="mailto:hiemkimtoun@gmail.com"
+                    >hiemkimtoun@gmail.com</a
+                  >
+                </p>
+                <p>
+                  <i class="fas fa-phone mr-3"></i>
+                  <a class="hover:underline" href="tel:+0977008435">0977008435</a>
+                </p>
+              </div>
+              <div class="mt-6 text-yellow-800 text-sm leading-relaxed">
+                <p>
+                  For inquiries or feedback, please reach out via email or phone. We are here to assist you.
+                </p>
+              </div>
+            </section>
+
+            <!-- Socials Section -->
+            <section id="socials" aria-label="Follow Us" class="text-center bg-white rounded-xl shadow-lg p-8 border border-yellow-300">
+              <h4
+                class="text-3xl font-extrabold text-yellow-900 mb-6 border-b border-yellow-300 pb-2"
+              >
+                Follow Us
+              </h4>
+              <p class="text-yellow-800 text-base mb-6 leading-relaxed">
+                Connect with us on social media for the latest updates and community engagement.
+              </p>
+              <div class="flex justify-center space-x-12 text-yellow-700 text-4xl">
+                <a
+                  aria-label="Facebook"
+                  class="hover:text-yellow-900 transition-colors duration-300"
+                  href="https://www.facebook.com/share/1NknRcaHju/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <i class="fab fa-facebook-square"></i>
+                </a>
+                <a
+                  aria-label="YouTube"
+                  class="hover:text-yellow-900 transition-colors duration-300"
+                  href="https://youtube.com/@coolworldslab-ex1re?si=GpE5mUFvYxPwrGBt"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <i class="fab fa-youtube"></i>
+                </a>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </section>
+
+      <!-- International News Section with Contact and Socials inline -->
+      <section
+        v-if="currentView === 'international'"
+        class="container mx-auto px-4 py-16 max-w-7xl"
+        id="international"
+      >
+        <h3
+          class="text-4xl font-extrabold text-yellow-900 mb-12 border-b border-yellow-300 pb-3"
+        >
+          International News
+        </h3>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+          <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-10">
+            <article
+              v-for="(news, index) in newsList"
+              :key="news.id"
+              class="border border-yellow-300 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition cursor-pointer bg-white flex flex-col"
+              @click="openNews(news.id)"
+              tabindex="0"
+              @keydown.enter="openNews(news.id)"
+              role="button"
+              :aria-label="'Read full news: ' + news.title"
+            >
+              <img
+                :alt="news.imageAlt"
+                class="w-full h-56 object-cover rounded-t-2xl"
+                height="250"
+                :src="news.imageSrc"
+                width="400"
+                loading="lazy"
+              />
+              <div class="p-6 flex flex-col flex-grow">
+                <h4 class="font-semibold text-xl text-yellow-900 mb-3 leading-snug">
+                  {{ news.title }}
+                </h4>
+                <p class="text-yellow-800 text-base mb-6 line-clamp-3 flex-grow">
+                  {{ news.summary }}
+                </p>
+                <button
+                  @click.stop="openNews(news.id)"
+                  class="text-yellow-700 font-semibold hover:underline text-sm self-start"
+                  aria-label="Read more about {{ news.title }}"
+                >
+                  Read more
+                </button>
+              </div>
+            </article>
+          </div>
+          <aside class="space-y-16">
+            <!-- Contact Section -->
+            <section id="contact" aria-label="Contact Us" class="bg-white rounded-xl shadow-lg p-8 border border-yellow-300">
+              <h4
+                class="text-3xl font-extrabold text-yellow-900 mb-6 border-b border-yellow-300 pb-2"
+              >
+                Contact Us
+              </h4>
+              <div class="text-yellow-900 space-y-4 text-base font-medium">
+                <p>
+                  <i class="fas fa-envelope mr-3"></i>
+                  <a class="hover:underline" href="mailto:hiemkimtoun@gmail.com"
+                    >hiemkimtoun@gmail.com</a
+                  >
+                </p>
+                <p>
+                  <i class="fas fa-phone mr-3"></i>
+                  <a class="hover:underline" href="tel:+0977008435">0977008435</a>
+                </p>
+              </div>
+              <div class="mt-6 text-yellow-800 text-sm leading-relaxed">
+                <p>
+                  For inquiries or feedback, please reach out via email or phone. We are here to assist you.
+                </p>
+              </div>
+            </section>
+
+            <!-- Socials Section -->
+            <section id="socials" aria-label="Follow Us" class="text-center bg-white rounded-xl shadow-lg p-8 border border-yellow-300">
+              <h4
+                class="text-3xl font-extrabold text-yellow-900 mb-6 border-b border-yellow-300 pb-2"
+              >
+                Follow Us
+              </h4>
+              <p class="text-yellow-800 text-base mb-6 leading-relaxed">
+                Connect with us on social media for the latest updates and community engagement.
+              </p>
+              <div class="flex justify-center space-x-12 text-yellow-700 text-4xl">
+                <a
+                  aria-label="Facebook"
+                  class="hover:text-yellow-900 transition-colors duration-300"
+                  href="https://www.facebook.com/share/1NknRcaHju/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <i class="fab fa-facebook-square"></i>
+                </a>
+                <a
+                  aria-label="YouTube"
+                  class="hover:text-yellow-900 transition-colors duration-300"
+                  href="https://youtube.com/@coolworldslab-ex1re?si=GpE5mUFvYxPwrGBt"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <i class="fab fa-youtube"></i>
+                </a>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Full News Article Section -->
+      <section
+        v-if="currentView === 'article'"
+        class="container mx-auto px-4 py-16 max-w-4xl"
+        aria-live="polite"
+      >
+        <button
+          @click="goBack"
+          class="mb-8 inline-flex items-center space-x-3 text-yellow-900 font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-yellow-700 rounded"
+          aria-label="Back to news list"
+        >
+          <i class="fas fa-arrow-left text-lg"></i>
+          <span class="text-lg">Back</span>
+        </button>
+        <article>
+          <h2 class="text-5xl font-extrabold text-yellow-900 mb-6 leading-tight drop-shadow-md">
+            {{ selectedNews.title }}
+          </h2>
+          <img
+            :alt="selectedNews.imageAlt"
+            class="rounded-2xl shadow-2xl w-full mb-10 object-cover max-h-96"
+            :src="selectedNews.imageSrc"
+            loading="lazy"
+          />
+          <p class="text-yellow-900 text-lg mb-12 whitespace-pre-line leading-relaxed">
+            {{ selectedNews.content }}
+          </p>
+        </article>
+
+        <!-- Comments Section -->
+        <section aria-label="Comments section" class="mt-16">
+          <h3
+            class="text-3xl font-extrabold text-yellow-900 mb-8 border-b border-yellow-300 pb-3"
+          >
+            Comments
+          </h3>
+          <div
+            class="comments-scroll border border-yellow-300 rounded-xl p-6 bg-yellow-50 shadow-inner mb-10"
+            role="region"
+            aria-live="polite"
+            aria-relevant="additions"
+            tabindex="0"
+          >
+            <template v-if="comments.length === 0">
+              <p class="text-yellow-700 italic">No comments yet. Be the first to comment!</p>
+            </template>
+            <ul class="space-y-6">
+              <li
+                v-for="(comment, index) in comments"
+                :key="comment.id"
+                class="border-b border-yellow-200 pb-5 last:border-b-0"
+              >
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-semibold text-yellow-900 text-lg">{{ comment.name }}</span>
+                  <time
+                    class="text-sm text-yellow-700"
+                    :datetime="comment.date.toISOString()"
+                    >{{ formatDate(comment.date) }}</time
+                  >
+                </div>
+                <p class="text-yellow-800 whitespace-pre-line text-base leading-relaxed">{{ comment.message }}</p>
+                <button
+                  @click="toggleReplyForm(index)"
+                  class="mt-2 text-sm text-yellow-700 hover:text-yellow-900 focus:outline-none focus:underline font-semibold"
+                  :aria-expanded="comment.showReply ? 'true' : 'false'"
+                  :aria-controls="'reply-form-' + comment.id"
+                >
+                  {{ comment.showReply ? "Cancel Reply" : "Reply" }}
+                </button>
+
+                <!-- Reply Form -->
+                <form
+                  v-if="comment.showReply"
+                  :id="'reply-form-' + comment.id"
+                  @submit.prevent="submitReply(index)"
+                  class="mt-5 space-y-4 bg-yellow-100 p-5 rounded-xl border border-yellow-300"
+                >
+                  <div>
+                    <label
+                      :for="'reply-name-' + comment.id"
+                      class="block text-yellow-900 font-semibold mb-2 text-base"
+                      >Name</label
+                    >
+                    <input
+                      :id="'reply-name-' + comment.id"
+                      v-model="comment.replyName"
+                      type="text"
+                      required
+                      class="w-full border border-yellow-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-4 focus:ring-yellow-400 transition"
+                      placeholder="Your name"
+                      aria-required="true"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      :for="'reply-message-' + comment.id"
+                      class="block text-yellow-900 font-semibold mb-2 text-base"
+                      >Reply</label
+                    >
+                    <textarea
+                      :id="'reply-message-' + comment.id"
+                      v-model="comment.replyMessage"
+                      rows="3"
+                      required
+                      class="w-full border border-yellow-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-4 focus:ring-yellow-400 transition resize-none"
+                      placeholder="Write your reply here"
+                      aria-required="true"
+                    ></textarea>
+                  </div>
+                  <button
+                    type="submit"
+                    class="bg-yellow-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-yellow-700 transition w-full sm:w-auto"
+                    aria-label="Send Reply"
+                  >
+                    Send Reply
+                  </button>
+                </form>
+
+                <!-- Replies -->
+                <ul v-if="comment.replies.length" class="mt-8 pl-8 border-l border-yellow-300 space-y-6">
+                  <li
+                    v-for="reply in comment.replies"
+                    :key="reply.id"
+                    class="bg-yellow-100 p-5 rounded-xl shadow-sm"
+                  >
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="font-semibold text-yellow-900 text-lg">{{ reply.name }}</span>
+                      <time
+                        class="text-sm text-yellow-700"
+                        :datetime="reply.date.toISOString()"
+                        >{{ formatDate(reply.date) }}</time
+                      >
+                    </div>
+                    <p class="text-yellow-800 whitespace-pre-line text-base leading-relaxed">{{ reply.message }}</p>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <!-- New Comment Form -->
+          <form @submit.prevent="submitComment" class="max-w-xl mx-auto space-y-8 bg-yellow-50 p-10 rounded-xl border border-yellow-300 shadow-lg">
+            <h4 class="text-2xl font-extrabold text-yellow-900">Add a Comment</h4>
+            <div>
+              <label for="comment-name" class="block text-yellow-900 font-semibold mb-3 text-lg"
+                >Name</label
+              >
+              <input
+                id="comment-name"
+                v-model="newComment.name"
+                type="text"
+                required
+                placeholder="Your name"
+                class="w-full border border-yellow-300 rounded-lg px-5 py-3 focus:outline-none focus:ring-4 focus:ring-yellow-400 transition"
+                aria-required="true"
+              />
+            </div>
+            <div>
+              <label for="comment-message" class="block text-yellow-900 font-semibold mb-3 text-lg"
+                >Comment</label
+              >
+              <textarea
+                id="comment-message"
+                v-model="newComment.message"
+                rows="5"
+                required
+                placeholder="Write your comment here"
+                class="w-full border border-yellow-300 rounded-lg px-5 py-3 focus:outline-none focus:ring-4 focus:ring-yellow-400 transition resize-none"
+                aria-required="true"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="bg-yellow-600 text-white px-10 py-4 rounded-lg font-semibold hover:bg-yellow-700 transition w-full sm:w-auto"
+              aria-label="Post Comment"
+            >
+              Post Comment
+            </button>
+          </form>
+        </section>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-yellow-300 py-8 mt-auto bg-yellow-50">
+      <div class="container mx-auto px-4 text-center text-yellow-700 text-sm font-medium select-none">
+        © 2024 Universal News. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script>
+    const { createApp, ref, reactive, computed } = Vue;
+
+    createApp({
+      setup() {
+        // News data for national and international
+        const nationalNews = [
+          {
+            id: "n1",
+            title: "Government Approves New Infrastructure Plan",
+            summary:
+              "The government has approved a $5 billion infrastructure plan to improve roads and bridges nationwide.",
+            content:
+              "The government has approved a $5 billion infrastructure plan to improve roads and bridges nationwide. This ambitious project aims to modernize the country's transportation network, create thousands of jobs, and boost economic growth. The plan includes upgrades to highways, bridges, and public transit systems, with a focus on sustainability and resilience against climate change.",
+            imageSrc:
+              "https://storage.googleapis.com/a1aa/image/f8cdeb43-2fb2-48ed-fbd9-9688ae2aa004.jpg",
+            imageAlt:
+              "City Hall building with flags waving in front and clear blue sky",
+          },
+          {
+            id: "n2",
+            title: "Agricultural Sector Sees Record Growth This Year",
+            summary:
+              "New reports show a record growth in agricultural production, boosting the national economy.",
+            content:
+              "New reports show a record growth in agricultural production, boosting the national economy. Advances in technology, favorable weather conditions, and government support have contributed to increased yields in crops such as wheat, corn, and soybeans. This growth is expected to improve food security and increase exports.",
+            imageSrc:
+              "https://storage.googleapis.com/a1aa/image/f15901c4-498b-4930-b522-12478da03ef5.jpg",
+            imageAlt:
+              "Farmers working in a field with tractors and growing crops under a sunny sky",
+          },
+          {
+            id: "n3",
+            title: "Public Transport Expansion Plans Announced",
+            summary:
+              "Authorities announced plans to expand public transport networks to reduce traffic congestion.",
+            content:
+              "Authorities announced plans to expand public transport networks to reduce traffic congestion. The expansion includes new bus routes, additional subway lines, and improved cycling infrastructure. The initiative aims to provide affordable and sustainable transportation options for urban and suburban residents.",
+            imageSrc:
+              "https://storage.googleapis.com/a1aa/image/4566f7ab-f947-4d09-9681-b51bfadea73d.jpg",
+            imageAlt:
+              "City subway station with commuters waiting and trains arriving",
+          },
+          {
+            id: "n4",
+            title: "Education Reform Bill Passed by Parliament",
+            summary:
+              "Parliament passed a new education reform bill aimed at improving school infrastructure and teacher training.",
+            content:
+              "Parliament passed a new education reform bill aimed at improving school infrastructure and teacher training. The bill allocates funds for renovating schools, updating curricula, and increasing teacher salaries. It also emphasizes digital literacy and inclusive education for all students.",
+            imageSrc:
+              "https://storage.googleapis.com/a1aa/image/15adaa8e-edc3-4ac8-34da-e11458d1f88a.jpg",
+            imageAlt:
+              "School children in classroom learning with teacher guiding them",
+          },
+          {
+            id: "n5",
+            title: "Healthcare System Receives Major Funding Boost",
+            summary:
+              "The healthcare system will receive $2 billion in funding to upgrade hospitals and medical services.",
+            content:
+              "The healthcare system will receive $2 billion in funding to upgrade hospitals and medical services. This investment will improve emergency care, expand telemedicine, and support medical research. The funding aims to enhance patient outcomes and reduce wait times.",
+            imageSrc:
+              "https://storage.googleapis.com/a1aa/image/4c9d0405-57ee-409a-1296-df6585278575.jpg",
+            imageAlt:
+              "Hospital staff working in a busy emergency room with medical equipment",
+          },
+          {
+            id: "n6",
+            title: "Crime Rates Drop Significantly in Urban Areas",
+            summary:
+              "Recent statistics show a significant drop in crime rates across major urban centers.",
+            content:
+              "Recent statistics show a significant drop in crime rates across major urban centers. Enhanced community policing, improved surveillance, and social programs have contributed to this positive trend. Authorities continue to focus on maintaining public safety and supporting at-risk populations.",
+            imageSrc:
+              "https://storage.googleapis.com/a1aa/image/1f152854-4f85-442e-757b-25a0cdf64153.jpg",
+            imageAlt:
+              "Police officers patrolling city streets at night with flashing lights",
+          },
+        ];
+
+        const internationalNews = [
+          {
+            id: "i1",
+            title: "UN Holds Emergency Meeting on Climate Change",
+            summary:
+              "The United Nations convened an emergency meeting to discuss urgent climate change actions.",
+            content:
+              "The United Nations convened an emergency meeting to discuss urgent climate change actions. Delegates from member countries debated new policies to reduce carbon emissions, promote renewable energy, and support vulnerable nations. The meeting concluded with a call for immediate global cooperation.",
+            imageSrc:
+              "https://storage.googleapis.com/a1aa/image/3e0e0009-7bce-4cad-d4d1-9dba22418615.jpg",
+            imageAlt:
+              "United Nations building in New York City with flags of member countries",
+          },
+          {
+            id: "i2",
+            title: "New Discoveries from the International Space Station",
+            summary:
+              "Scientists aboard the ISS have made new discoveries about microgravity effects on human health.",
+            content:
+              "Scientists aboard the ISS have made new discoveries about microgravity effects on human health. These findings could lead to improved treatments for muscle atrophy and bone loss on Earth. The research also advances our understanding of long-duration spaceflight challenges.",
+            imageSrc:
+              "https://storage.googleapis.com/a1aa/image/c3b7b143-7877-4d24-c986-a1225e9a0b5c.jpg",
+            imageAlt:
+              "International Space Station orbiting Earth with blue oceans and clouds visible",
+          },
+          {
+            id: "i3",
+            title: "Global Summit Focuses on Economic Recovery",
+            summary:
+              "Leaders from around the world gathered to discuss strategies for post-pandemic economic recovery.",
+            content:
+              "Leaders from around the world gathered to discuss strategies for post-pandemic economic recovery. Topics included stimulus packages, trade agreements, and support for small businesses. The summit emphasized sustainable growth and reducing economic inequalities.",
+            imageSrc:
+              "https://storage.googleapis.com/a1aa/image/b4a6d819-4687-4c06-0e52-c92bb193fcf0.jpg",
+            imageAlt:
+              "World leaders sitting at a global summit conference table with flags and microphones",
+          },
+          {
+            id: "i4",
+            title: "Humanitarian Aid Ramps Up in Conflict Zones",
+            summary:
+              "International organizations increase aid efforts to support displaced populations in conflict zones.",
+            content:
+              "International organizations increase aid efforts to support displaced populations in conflict zones. Emergency food, shelter, and medical supplies are being delivered despite logistical challenges. The global community calls for peaceful resolutions to ongoing conflicts.",
+            imageSrc:
+              "https://storage.googleapis.com/a1aa/image/721a224c-5a7f-4df0-4499-45df48ba9552.jpg",
+            imageAlt:
+              "Refugees crossing a border carrying belongings and children, humanitarian crisis",
+          },
+          {
+            id: "i5",
+            title: "Innovations Unveiled at Global Tech Expo",
+            summary:
+              "The Global Tech Expo revealed cutting-edge innovations in robotics and artificial intelligence.",
+            content:
+              "The Global Tech Expo revealed cutting-edge innovations in robotics and artificial intelligence. Highlights included autonomous robots, AI-powered healthcare devices, and smart home technologies. Industry leaders discussed the ethical implications and future trends.",
+            imageSrc:
+              "https://storage.googleapis.com/a1aa/image/5df71011-8975-4ff5-3d2c-8765c581a7c1.jpg",
+            imageAlt:
+              "New technology conference showcasing robots and innovative gadgets",
+          },
+          {
+            id: "i6",
+            title: "International Sports Event Draws Global Attention",
+            summary:
+              "The international sports event attracted millions of viewers worldwide with thrilling competitions.",
+            content:
+              "The international sports event attracted millions of viewers worldwide with thrilling competitions. Athletes from dozens of countries competed in various disciplines, showcasing talent and sportsmanship. The event also promoted cultural exchange and unity.",
+            imageSrc:
+              "https://storage.googleapis.com/a1aa/image/601b7986-7f9c-4ce0-2c84-d0503017d8aa.jpg",
+            imageAlt:
+              "International sports event stadium full of cheering fans and athletes competing",
+          },
+        ];
+
+        // Reactive state
+        const currentView = ref("home"); // home, national, international, article, contact, socials
+        const selectedNewsId = ref(null);
+        const commentsData = reactive({}); // key: newsId, value: array of comments
+
+        // New comment form data
+        const newComment = reactive({
+          name: "",
+          message: "",
+        });
+
+        // Computed: news list based on currentView
+        const newsList = computed(() => {
+          if (currentView.value === "national") return nationalNews;
+          if (currentView.value === "international") return internationalNews;
+          return [];
+        });
+
+        // Selected news article object
+        const selectedNews = computed(() => {
+          if (!selectedNewsId.value) return null;
+          const allNews = [...nationalNews, ...internationalNews];
+          return allNews.find((n) => n.id === selectedNewsId.value) || null;
+        });
+
+        // Comments for selected news
+        const comments = computed(() => {
+          if (!selectedNewsId.value) return [];
+          if (!commentsData[selectedNewsId.value]) {
+            commentsData[selectedNewsId.value] = [];
+          }
+          return commentsData[selectedNewsId.value];
+        });
+
+        // Format date for display
+        function formatDate(date) {
+          const d = new Date(date);
+          return d.toLocaleDateString(undefined, {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+        }
+
+        // Navigation helpers
+        function goToSection(section) {
+          currentView.value = section;
+          selectedNewsId.value = null;
+          clearNewComment();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        // Open full news article
+        function openNews(id) {
+          selectedNewsId.value = id;
+          currentView.value = "article";
+          clearNewComment();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        // Go back to news list
+        function goBack() {
+          if (!selectedNewsId.value) {
+            currentView.value = "home";
+          } else {
+            // Determine if news is national or international
+            if (nationalNews.find((n) => n.id === selectedNewsId.value)) {
+              currentView.value = "national";
+            } else {
+              currentView.value = "international";
+            }
+          }
+          selectedNewsId.value = null;
+          clearNewComment();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        // Clear new comment form
+        function clearNewComment() {
+          newComment.name = "";
+          newComment.message = "";
+        }
+
+        // Submit new comment
+        function submitComment() {
+          if (!newComment.name.trim() || !newComment.message.trim()) return;
+
+          if (!commentsData[selectedNewsId.value]) {
+            commentsData[selectedNewsId.value] = [];
+          }
+
+          commentsData[selectedNewsId.value].push({
+            id: Date.now() + Math.random(),
+            name: newComment.name.trim(),
+            message: newComment.message.trim(),
+            date: new Date(),
+            replies: [],
+            showReply: false,
+            replyName: "",
+            replyMessage: "",
+          });
+
+          clearNewComment();
+          // Focus comments container after posting
+          setTimeout(() => {
+            const commentsRegion = document.querySelector(
+              '[aria-label="Comments section"]'
+            );
+            if (commentsRegion) commentsRegion.focus();
+          }, 100);
+        }
+
+        // Toggle reply form for a comment
+        function toggleReplyForm(index) {
+          const comment = comments.value[index];
+          comment.showReply = !comment.showReply;
+          if (!comment.showReply) {
+            comment.replyName = "";
+            comment.replyMessage = "";
+          }
+        }
+
+        // Submit reply to a comment
+        function submitReply(index) {
+          const comment = comments.value[index];
+          if (
+            !comment.replyName.trim() ||
+            !comment.replyMessage.trim()
+          )
+            return;
+
+          comment.replies.push({
+            id: Date.now() + Math.random(),
+            name: comment.replyName.trim(),
+            message: comment.replyMessage.trim(),
+            date: new Date(),
+          });
+
+          comment.replyName = "";
+          comment.replyMessage = "";
+          comment.showReply = false;
+
+          // Focus comments container after reply
+          setTimeout(() => {
+            const commentsRegion = document.querySelector(
+              '[aria-label="Comments section"]'
+            );
+            if (commentsRegion) commentsRegion.focus();
+          }, 100);
+        }
+
+        return {
+          currentView,
+          newsList,
+          selectedNews,
+          selectedNewsId,
+          comments,
+          newComment,
+          formatDate,
+          goToSection,
+          openNews,
+          goBack,
+          submitComment,
+          toggleReplyForm,
+          submitReply,
+        };
+      },
+    }).mount("#app");
+  </script>
+</body>
+</html>
